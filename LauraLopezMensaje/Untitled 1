@@ -1,0 +1,61 @@
+	private Persistencia BD;
+	private Pirata Sparrow;
+	public Mundo() {
+		BD = new Persistencia();
+		Sparrow = new Pirata();
+	}
+
+	public Persistencia() {
+		this.cofremagico = "codigopirata.properties";
+	}
+	
+	public class Pirata {
+		private String llave;
+		private String palabra;
+		//OJO: AQUÍ SE PERDIÓ LA DECLARACIÓN DE UN ATRIBUTO
+	
+		public Pirata() {
+			this.llave = "xxx";
+			this.palabra = "yes";
+			this.codigohonor = new Properties();
+		}
+	
+		public void establecerLlaves(String cofrecerrado) {
+			codigohonor.setProperty("hermandad", "barbosa");
+			codigohonor.setProperty("enemistad", "salazar");
+			try {
+				codigohonor.store(new FileOutputStream(cofrecerrado), null);
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		public String recibirLlaves(String cofreabierto) {
+			try {
+				codigohonor.load(new FileInputStream(cofreabierto));
+				this.llave = codigohonor.getProperty("hermandad");
+				this.palabra = codigohonor.getProperty("enemistad");
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			return this.llave + " ** " + this.palabra;
+		}
+	}	
+	public class Controlador {
+		private Mundo bd;
+		private Interfaz gui;
+	
+		public Controlador() 
+		{
+			//OJO: AQUI VA UNA LINEA DE CÓDIGO QUE SE PERDIÓ!!!!!
+			//OJO: AQUI VA UNA LINEA DE CÓDIGO QUE SE PERDIÓ!!!!!
+			bd.getSparrow().establecerLlaves(bd.getBD().getCofremagico());
+			gui.escribirDato(bd.getSparrow().recibirLlaves(bd.getBD().getCofremagico()));
+		}	
+	}
+	
+	/* en Clase Interfaz va todo completo como lo tengas tu de tus proyectos anteriores*/		
+	
+		
